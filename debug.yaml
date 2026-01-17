@@ -1,0 +1,11 @@
+logger:
+  level: DEBUG
+
+interval:
+  - interval: 5s
+    then:
+      - lambda: |-
+          ESP_LOGD("HYUNDAI_TEST", "Mode: %u", id(hyundai)->hvac_mode_);
+          ESP_LOGD("HYUNDAI_TEST", "T1: %.1f°C", id(hyundai)->current_temp_);
+          ESP_LOGD("HYUNDAI_TEST", "T1s: %.1f°C", id(hyundai)->target_temp_);
+          ESP_LOGD("HYUNDAI_TEST", "Freq: %.1f Hz", id(hyundai)->compressor_freq_);
