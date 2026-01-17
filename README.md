@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="banner.svg" width="100%" />
+  <img src="images/banner.svg" width="100%" />
 </p>
 
 <p align="center">
-  <img src="logo.svg" width="180" />
+  <img src="images/logo.svg" width="180" />
 </p>
 
 <p align="center">
