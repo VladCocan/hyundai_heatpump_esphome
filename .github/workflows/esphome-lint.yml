@@ -1,0 +1,23 @@
+name: ESPHome Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  esphome-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install ESPHome
+        run: pip install esphome
+
+      - name: Validate example config
+        run: esphome config example_esphome.yaml
