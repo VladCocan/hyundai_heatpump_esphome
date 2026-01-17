@@ -1,0 +1,46 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Light mode */
+    :root {
+      --bg: white;
+      --stroke: #0A0A0A;
+      --coil: #0078FF;
+      --coil2: #00C6A7;
+      --node: white;
+      --text: #0A0A0A;
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --stroke: #1F1F1F;
+        --coil: #00C6A7;
+        --coil2: #0078FF;
+        --node: #00E0C0;
+        --text: #E0E0E0;
+      }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="coilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--coil)" />
+      <stop offset="100%" stop-color="var(--coil2)" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="120" cy="120" r="110" fill="var(--bg)" stroke="var(--stroke)" stroke-width="4"/>
+
+  <path d="M70 120 A50 50 0 1 1 170 120 A50 50 0 1 1 70 120"
+        fill="none" stroke="url(#coilGrad)" stroke-width="10" stroke-linecap="round"/>
+
+  <circle cx="120" cy="55" r="10" fill="var(--node)"/>
+  <circle cx="175" cy="120" r="10" fill="var(--node)"/>
+  <circle cx="120" cy="185" r="10" fill="var(--node)"/>
+  <circle cx="65" cy="120" r="10" fill="var(--node)"/>
+
+  <text x="120" y="215" font-family="Arial, sans-serif" font-size="22" fill="var(--text)" text-anchor="middle">
+    HYUNDAI R290
+  </text>
+</svg>
