@@ -1,0 +1,9 @@
+idf_component_register(
+    SRCS
+        "components/hyundai_heatpump/hyundai_heatpump.cpp"
+        "components/hyundai_heatpump/hyundai_heatpump_climate.cpp"
+        "components/hyundai_heatpump/hyundai_heatpump_sensors.cpp"
+        "components/hyundai_heatpump/hyundai_heatpump_binary_sensors.cpp"
+        "components/hyundai_heatpump/hyundai_heatpump_switches.cpp"
+    INCLUDE_DIRS "components/hyundai_heatpump"
+)
