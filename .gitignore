@@ -1,0 +1,33 @@
+# ESPHome build artifacts
+/.esphome/
+/build/
+/.esphome/build/
+/.esphome/platformio/
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Python virtual environments
+venv/
+.env/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
+*~
+
+# Credentials
+secrets.yaml
