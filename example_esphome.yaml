@@ -1,0 +1,27 @@
+esphome:
+  name: hyundai_r290
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: "WIFI_TAU"
+  password: "PAROLA_TA"
+
+logger:
+  level: DEBUG
+
+api:
+ota:
+
+uart:
+  tx_pin: 17
+  rx_pin: 16
+  baud_rate: 9600
+
+external_components:
+  - source: github://vlad/hyundai_heatpump_esphome
+    components: [hyundai_heatpump]
+
+climate:
+  - platform: hyundai_heatpump
+    name: "Hyundai R290"
