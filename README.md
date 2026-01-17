@@ -17,34 +17,29 @@
 
 # 🔥 Hyundai R290 Heatpump – ESPHome Custom Component
 
-Integrare completă pentru pompele de căldură **Hyundai / Midea R290** prin **Modbus RTU**, cu suport nativ pentru:
+This project provides a **full ESPHome integration** for **Hyundai / Midea R290 heat pumps** using **Modbus RTU**.  
+It exposes a native `climate` entity, sensors, binary sensors, and switches — all automatically discovered by Home Assistant.
 
-- entitate `climate`
-- senzori
-- binary_sensors
-- switch-uri
-- control complet al temperaturii și modurilor
-
-Componentul este inspirat de arhitectura *Samsung HVAC Bus*, dar optimizat pentru R290, 1 zonă, fără DHW.
+The architecture is inspired by the *Samsung HVAC Bus* project but optimized specifically for **R290 monobloc units (1 zone, no DHW)**.
 
 ---
 
-# 🚀 Caracteristici
+# 🚀 Features
 
-- 🔥 Control complet al pompei Hyundai R290 prin Modbus RTU  
-- 🎛 Climate nativ în Home Assistant (Heat / Cool / Off)  
-- 🎚 Slider temperatură **25–75°C**, pas **1°C**  
-- 🌡 20+ senzori integrați automat  
-- ⚙ Statusuri pe biți (defrost, heating active, pumps etc.)  
-- 🔌 Switch-uri pentru Zone 1 și Room Control  
-- 📡 ESP32 + RS485, fără gateway-uri comerciale  
-- 🧩 Compatibil ESPHome 2024+  
+- 🔥 Full Modbus RTU control of Hyundai R290 heat pumps  
+- 🎛 Native Home Assistant `climate` entity (Heat / Cool / Off)  
+- 🎚 Temperature slider **25–75°C**, 1°C step  
+- 🌡 20+ sensors automatically exposed  
+- ⚙ Bit‑level status decoding (defrost, heating active, pumps, resistors, etc.)  
+- 🔌 Switches for Zone 1 and Room Control  
+- 📡 ESP32 + RS485 — no proprietary gateway required  
+- 🧩 Compatible with ESPHome 2024+  
 
 ---
 
-# 📦 Instalare
+# 📦 Installation
 
-Adaugă în fișierul tău ESPHome:
+Add this to your ESPHome configuration:
 
 ```yaml
 external_components:
@@ -54,7 +49,7 @@ external_components:
 
 ---
 
-# 🛠 Exemplu complet de configurare ESPHome
+# 🛠 Example ESPHome Configuration
 
 ```yaml
 esphome:
@@ -63,8 +58,8 @@ esphome:
   board: esp32dev
 
 wifi:
-  ssid: "WIFI_TAU"
-  password: "PAROLA_TA"
+  ssid: "YOUR_WIFI"
+  password: "YOUR_PASSWORD"
 
 logger:
   level: DEBUG
@@ -88,9 +83,9 @@ climate:
 
 ---
 
-# 🧪 Debug / Test
+# 🧪 Debug / Test Configuration
 
-Creează un fișier separat `debug.yaml`:
+Create a separate file `debug.yaml`:
 
 ```yaml
 logger:
@@ -108,7 +103,7 @@ interval:
 
 ---
 
-# 🏠 Dashboard Lovelace (Home Assistant)
+# 🏠 Home Assistant Dashboard Example
 
 ```yaml
 type: vertical-stack
@@ -118,7 +113,7 @@ cards:
     name: Hyundai R290
 
   - type: entities
-    title: Temperaturi
+    title: Temperatures
     entities:
       - sensor.hyundai_t1
       - sensor.hyundai_tw_in
@@ -132,7 +127,7 @@ cards:
       - sensor.hyundai_t9o
 
   - type: entities
-    title: Presiuni & Compresor
+    title: Pressures & Compressor
     entities:
       - sensor.hyundai_p1
       - sensor.hyundai_p2
@@ -140,7 +135,7 @@ cards:
       - sensor.hyundai_fan
 
   - type: entities
-    title: Energie & Consum
+    title: Energy & Consumption
     entities:
       - sensor.hyundai_power
       - sensor.hyundai_cop
@@ -149,7 +144,7 @@ cards:
       - sensor.hyundai_current
 
   - type: entities
-    title: Statusuri
+    title: Status
     entities:
       - binary_sensor.hyundai_heating_active
       - binary_sensor.hyundai_cooling_active
@@ -169,13 +164,13 @@ cards:
 
 # 🔧 Hardware Setup
 
-### Necesare:
-- ESP32 (WROOM/WROVER recomandat)
-- Convertor RS485 (MAX3485 / MAX485)
-- 2 fire pentru Modbus A/B
-- Alimentare 5V pentru convertor
+### Required:
+- ESP32 (WROOM/WROVER recommended)
+- RS485 transceiver (MAX3485 / MAX485)
+- 2‑wire Modbus A/B connection
+- 5V power for the RS485 module
 
-### Conexiuni:
+### Wiring:
 
 | ESP32 | RS485 |
 |-------|--------|
@@ -188,24 +183,24 @@ cards:
 
 ---
 
-# 📄 Licență
+# 📄 License
 
 MIT License
 
 ---
 
-# ❤️ Contribuții
+# ❤️ Contributing
 
-Pull request‑urile sunt binevenite.  
-Dacă ai un alt model Hyundai/Midea, deschide un issue pentru suport.
+Pull requests are welcome.  
+If you have a different Hyundai/Midea model, feel free to open an issue.
 
 ---
 
-# 🧱 Status proiect
+# 🧱 Project Status
 
-Acest component este stabil și pregătit pentru producție.  
-Testat pe:
+This component is stable and production‑ready.  
+Tested with:
 
-- Hyundai R290 monobloc (1 zonă, fără DHW)
-- ESP32 WROOM
-- MAX3485 RS485
+- Hyundai R290 monobloc (1 zone, no DHW)  
+- ESP32 WROOM  
+- MAX3485 RS485  
