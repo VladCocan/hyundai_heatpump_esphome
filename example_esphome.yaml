@@ -19,7 +19,7 @@ uart:
   baud_rate: 9600
 
 external_components:
-  - source: github://VladCocan/hyundai_heatpump_esphome
+  - source: github://VladCocan/hyundai_heatpump_esphome@v1.0.0
     components: [hyundai_heatpump]
 
 climate:
