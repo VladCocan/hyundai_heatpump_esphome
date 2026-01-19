@@ -9,7 +9,7 @@ DEPENDENCIES = ["modbus_controller"]
 CONF_MODBUS_ID = "modbus_controller_id"
 
 # Declari ID-ul pentru YAML
-CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
+CONFIG_SCHEMA = climate._CLIMATE_SCHEMA.extend({
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
 }).extend({
     cv.GenerateID(): cv.declare_id()  # permite `id:` în YAML
