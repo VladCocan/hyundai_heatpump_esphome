@@ -7,7 +7,7 @@ DEPENDENCIES = ["modbus_controller"]
 
 CONF_MODBUS_ID = "modbus_controller_id"
 
-CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
+CONFIG_SCHEMA = climate._CLIMATE_SCHEMA.extend({
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
 })
 
