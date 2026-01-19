@@ -6,7 +6,7 @@ from .const import REG_POWER
 CONF_MODBUS_ID = "modbus_controller_id"
 CONF_REGISTER = "register"
 
-CONFIG_SCHEMA = switch.SWITCH_SCHEMA.extend({
+CONFIG_SCHEMA = switch._SWITCH_SCHEMA.extend({
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
     cv.Required("name"): cv.string,
     cv.Optional(CONF_REGISTER, default=REG_POWER): cv.positive_int,

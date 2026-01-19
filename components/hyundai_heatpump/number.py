@@ -6,7 +6,7 @@ from .const import REG_TARGET_TEMP
 CONF_MODBUS_ID = "modbus_controller_id"
 CONF_REGISTER = "register"
 
-CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
+CONFIG_SCHEMA = number._NUMBER_SCHEMA.extend({
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
     cv.Required("name"): cv.string,
     cv.Optional(CONF_REGISTER, default=REG_TARGET_TEMP): cv.positive_int,
