@@ -2,10 +2,11 @@
 
 #include "esphome.h"
 #include "esphome/components/modbus/modbus.h"
-#include "esphome/components/sensor/sensor_component.h"
-#include "esphome/components/binary_sensor/binary_sensor_component.h"
-#include "esphome/components/text_sensor/text_sensor_component.h"
+#include "esphome/components/sensor/sensor.h"
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/climate/climate.h"
+
 
 namespace esphome {
 namespace hyundai_heatpump {
