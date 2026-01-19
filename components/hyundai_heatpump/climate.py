@@ -4,24 +4,26 @@ from esphome.components import climate, modbus_controller
 
 DEPENDENCIES = ["modbus_controller"]
 
-# Declari clasa ta Python care va genera C++
+# Creează clasa C++ pentru climate
 HyundaiHPClimate = cg.esphome_ns.namespace("hyundai_heatpump").class_(
     "HyundaiHPClimate", climate.Climate, cg.Component
 )
 
-# Schema de configurare (ESPHome 2025+)
+# Schema ESPHome pentru YAML
 CONFIG_SCHEMA = cv.Schema({
-    cv.GenerateID(): cv.declare_id(HyundaiHPClimate),  # id-ul pentru componenta ta
-    cv.Required("modbus_controller_id"): cv.use_id(modbus_controller.ModbusController),
+    cv.GenerateID(): cv.declare_id(HyundaiHPClimate),  # id-ul componenta
     cv.Required("name"): cv.string,
-}).extend(climate.CLIMATE_SCHEMA)
+    cv.Required("modbus_controller_id"): cv.use_id(modbus_controller.ModbusController),
+}).extend(cv.COMPONENT_SCHEMA)  # extinde schema standard component
 
 async def to_code(config):
-    # creează variabila C++
+    # Creează instanța componentei
     var = cg.new_Pvariable(config[cv.GenerateID()])
-    await cg.register_component(var, config)
-    await climate.register_climate(var, config)
-
-    # legătura cu modbus_controller
+    
+    # Setează parent-ul modbus
     parent = await cg.get_variable(config["modbus_controller_id"])
     cg.add(var.set_modbus_parent(parent))
+
+    # Înregistrează componenta și climate
+    await cg.register_component(var, config)
+    await climate.register_climate(var, config)
