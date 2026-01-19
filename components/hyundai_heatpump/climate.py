@@ -7,12 +7,17 @@ DEPENDENCIES = ["modbus_controller"]
 
 CONF_MODBUS_ID = "modbus_controller_id"
 
+CONF_ID = "id"  # adaugă asta!
+
 CONFIG_SCHEMA = climate._CLIMATE_SCHEMA.extend({
+    cv.Required(CONF_ID): cv.declare_id(climate.Climate),
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
 })
 
 async def to_code(config):
     parent = await cg.get_variable(config[CONF_MODBUS_ID])
+    
+    
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await climate.register_climate(var, config)
