@@ -9,6 +9,13 @@ void HyundaiHPInternalClimate::setup() {
 
 void HyundaiHPInternalClimate::loop() {
   // Poll the hub / update current temperature
+  if (!hub_)
+    return;
+
+  if (hub_->tw_in_sensor_) {
+    this->publish_state(climate::ClimateMode::CLIMATE_MODE_HEAT,
+                        hub_->tw_in_sensor_->state);
+  }
 }
 
 climate::ClimateTraits HyundaiHPInternalClimate::traits() {
@@ -22,9 +29,12 @@ climate::ClimateTraits HyundaiHPInternalClimate::traits() {
 
 void HyundaiHPInternalClimate::control(const climate::ClimateCall &call) {
   // Handle Home Assistant commands (temperature/fan/swing)
+  if (!hub_)
+    return;
+
   if (call.get_target_temperature().has_value()) {
     float temp = *call.get_target_temperature();
-    // Send Modbus command via hub_ to set temperature
+    // TODO: Send Modbus command via hub_ to set temperature
   }
 
   // TODO: add fan/swing control

@@ -1,29 +1,24 @@
 #pragma once
-#include "esphome.h"
+
+#include "esphome/core/component.h"
 #include "esphome/components/climate/climate.h"
-#include "hyundai_heatpump.h"
+#include "esphome/components/sensor/sensor.h"
+#include "hyundai_heatpump.h"  // for HyundaiHPInternalHub
 
 namespace esphome {
 namespace hyundai_heatpump {
 
-class HyundaiHPInternalClimate : public climate::Climate, public Component {
+class HyundaiHPInternalClimate : public climate::Climate {
  public:
-  void set_hub(HyundaiHPInternalHub *hub) { this->hub_ = hub; }
-  void set_address(uint8_t address) { this->address_ = address; }
+  void setup() override;
+  void loop() override;
+  climate::ClimateTraits traits() override;
+  void control(const climate::ClimateCall &call) override;
 
-  // Required pure virtual overrides
-  climate::ClimateTraits traits() override {
-    auto t = climate::ClimateTraits();
-    t.set_supports_current_temperature(true);
-    return t;
-  }
-  void control(const climate::ClimateCall &call) override {
-    // TODO: implement sending Modbus commands to heat pump
-  }
+  void set_hub(HyundaiHPInternalHub *hub) { hub_ = hub; }
 
  protected:
-  HyundaiHPInternalHub *hub_;
-  uint8_t address_;
+  HyundaiHPInternalHub *hub_{nullptr};
 };
 
 }  // namespace hyundai_heatpump
