@@ -22,7 +22,7 @@ async def to_code(config):
     parent = await cg.get_variable(config[CONF_MODBUS_ID])
     
     
-    var = cg.new_Pvariable(config[cv.ID], parent)
+    var = cg.new_Pvariable(config["id"], parent)
     await cg.register_component(var, config)
     await climate.register_climate(var, config)
     cg.add(var.set_modbus_parent(parent))
