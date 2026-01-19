@@ -8,3 +8,7 @@ REG_COMPRESSOR = 0x0020     # Status compresor
 REG_PUMP_I = 0x0021         # Status pompa internă
 REG_PUMP_D = 0x0022         # Status pompa de distribuție
 REG_ERROR = 0x0030          # Cod eroare
+
+MODE_HEAT = 1
+MODE_COOL = 2
+MODE_DHW = 3

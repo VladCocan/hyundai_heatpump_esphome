@@ -3,21 +3,18 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from .const import *
 
-SENSORS = {
-    "water_temp": REG_WATER_TEMP,
-    "outdoor_temp": REG_OUTDOOR_TEMP
-}
+CONF_MODBUS_ID = "modbus_controller_id"
+CONF_REGISTER = "register"
 
 CONFIG_SCHEMA = cv.Schema({
-    cv.Required("modbus_controller_id"): cv.use_id(modbus_controller.ModbusController),
+    cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
     cv.Required("name"): cv.string,
-    cv.Optional("register"): cv.uint16_t,
-}).extend(modbus_controller.MODBUS_ITEM_SCHEMA)
+    cv.Required(CONF_REGISTER): cv.positive_int,
+})
 
 async def to_code(config):
-    parent = await cg.get_variable(config["modbus_controller_id"])
+    parent = await cg.get_variable(config[CONF_MODBUS_ID])
     var = cg.new_Pvariable(config[CONF_ID])
     await sensor.register_sensor(var, config)
     cg.add(var.set_parent(parent))
-    register = config.get("register", SENSORS.get(config["name"].lower(), 0x0010))
-    cg.add(var.set_register(register))
+    cg.add(var.set_register(config[CONF_REGISTER]))
