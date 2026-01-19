@@ -7,19 +7,22 @@ from .const import *
 
 DEPENDENCIES = ["modbus_controller"]
 
-# Creează clasa ESPHome care va genera C++
-HyundaiHPClimate = cg.esphome_class(
+CONF_MODBUS_ID = "modbus_controller_id"
+
+# Creează un namespace ESPHome pentru componenta ta
+hyundai_ns = cg.esphome_ns.namespace("hyundai_heatpump")
+
+# Creează clasa ta Climate care extinde Climate și Component
+HyundaiHPClimate = hyundai_ns.class_(
     "HyundaiHPClimate", climate.Climate, cg.Component
 )
 
-CONF_MODBUS_ID = "modbus_controller_id"
-
-# Schema de configurare pentru YAML
+# Schema YAML pentru configurare
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(HyundaiHPClimate),
     cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
     cv.Optional(CONF_NAME, default="Hyundai Heat Pump"): cv.string,
-}).extend(climate._CLIMATE_SCHEMA)  # <--- corect pentru ESPHome 2025+
+}).extend(climate._CLIMATE_SCHEMA)
 
 async def to_code(config):
     # Creează instanța clasei C++
