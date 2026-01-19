@@ -1,4 +1,3 @@
-# climate.py
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import climate, modbus_controller
@@ -8,17 +7,17 @@ DEPENDENCIES = ["modbus_controller"]
 
 CONF_MODBUS_ID = "modbus_controller_id"
 
-# Schema pentru YAML (folosim _CLIMATE_SCHEMA)
-CONFIG_SCHEMA = cv.Schema({
-    cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
-    cv.GenerateID(): cv.declare_id(),  # permite id: hyundai_hp
-    cv.Optional("name", default="Hyundai Heat Pump"): cv.string,
-})
-
-# Clasa care va fi generată în C++
+# Clasa generată în C++
 HyundaiHPClimate = cg.global_ns.class_(
     "HyundaiHPClimate", cg.Component, climate.Climate
 )
+
+# Schema YAML
+CONFIG_SCHEMA = cv.Schema({
+    cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
+    cv.GenerateID(): cv.declare_id(HyundaiHPClimate),  # <-- corect
+    cv.Optional("name", default="Hyundai Heat Pump"): cv.string,
+})
 
 async def to_code(config):
     var = cg.new_Pvariable(config[cv.ID])
