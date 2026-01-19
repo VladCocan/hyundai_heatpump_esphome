@@ -1,0 +1,8 @@
+{
+  "domain": "hyundai_heatpump",
+  "name": "Hyundai / Midea Heat Pump",
+  "version": "1.0.0",
+  "dependencies": ["modbus_controller", "climate"],
+  "codeowners": ["@VladCocan"],
+  "documentation": "https://github.com/VladCocan/hyundai_heatpump_esphome"
+}

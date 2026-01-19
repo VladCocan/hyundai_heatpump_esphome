@@ -1,0 +1,22 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078FF"/>
+      <stop offset="100%" stop-color="#00C6A7"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="120" cy="120" r="110" fill="url(#grad)" stroke="#0A0A0A" stroke-width="4"/>
+
+  <path d="M70 120 A50 50 0 1 1 170 120 A50 50 0 1 1 70 120"
+        fill="none" stroke="white" stroke-width="10" stroke-linecap="round"/>
+
+  <circle cx="120" cy="55" r="10" fill="white"/>
+  <circle cx="175" cy="120" r="10" fill="white"/>
+  <circle cx="120" cy="185" r="10" fill="white"/>
+  <circle cx="65" cy="120" r="10" fill="white"/>
+
+  <text x="120" y="215" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" text-anchor="middle">
+    HYUNDAI R290
+  </text>
+</svg>

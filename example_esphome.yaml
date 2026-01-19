@@ -1,0 +1,44 @@
+esphome:
+  name: hyundai_r290
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+wifi:
+  ssid: "WIFI_TAU"
+  password: "PAROLA_TA"
+
+logger:
+  level: DEBUG
+
+api:
+ota:
+  platform: esphome
+
+external_components:
+  - source: github://VladCocan/hyundai_heatpump_esphome@main
+    components: [hyundai_heatpump]
+    refresh: 10s
+
+uart:
+  id: hp_uart
+  tx_pin: 17
+  rx_pin: 16
+  baud_rate: 9600
+
+modbus:
+  id: hp_modbus
+  uart_id: hp_uart
+
+# Required because the custom component declares these dependencies
+climate:
+sensor:
+switch:
+binary_sensor:
+
+hyundai_heatpump:
+  uart_id: hp_uart
+  update_interval: 5s
+

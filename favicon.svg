@@ -1,0 +1,31 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Light mode */
+    :root {
+      --bg: #FFFFFF;
+      --coil: #0050D8;
+      --node: #003A9B;
+      --stroke: rgba(0,0,0,0.15);
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --coil: #00E0C0;
+        --node: #00E0C0;
+        --stroke: #1F1F1F;
+      }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="var(--bg)" stroke="var(--stroke)" stroke-width="2"/>
+
+  <!-- Coil arc -->
+  <path d="M16 32 A16 16 0 0 1 48 32"
+        fill="none" stroke="var(--coil)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Node -->
+  <circle cx="32" cy="18" r="6" fill="var(--node)"/>
+</svg>

@@ -1,0 +1,59 @@
+<svg width="1000" height="220" viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Light mode */
+    :root {
+      --bg: url(#lightGrad);
+      --text: #0A0A0A;
+      --subtitle: #333333;
+      --coil: #0050D8;
+      --node: #0050D8;
+      --circle: rgba(0,0,0,0.05);
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0A0A0A;
+        --text: #E0E0E0;
+        --subtitle: #B0B0B0;
+        --coil: #00E0C0;
+        --node: #00E0C0;
+        --circle: rgba(255,255,255,0.05);
+      }
+    }
+  </style>
+
+  <defs>
+    <!-- Strong gradient for LIGHT MODE -->
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0078FF"/>
+      <stop offset="100%" stop-color="#00C6A7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="220" rx="20" fill="var(--bg)"/>
+
+  <!-- Icon circle -->
+  <circle cx="130" cy="110" r="70" fill="var(--circle)" stroke="var(--coil)" stroke-width="4"/>
+
+  <!-- Coil -->
+  <path d="M90 110 A40 40 0 1 1 170 110 A40 40 0 1 1 90 110"
+        fill="none" stroke="var(--coil)" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Modbus nodes -->
+  <circle cx="130" cy="55" r="8" fill="var(--node)"/>
+  <circle cx="185" cy="110" r="8" fill="var(--node)"/>
+  <circle cx="130" cy="165" r="8" fill="var(--node)"/>
+  <circle cx="75" cy="110" r="8" fill="var(--node)"/>
+
+  <!-- Title -->
+  <text x="260" y="95" font-family="Arial, sans-serif" font-size="48" fill="var(--text)" font-weight="bold">
+    Hyundai R290 Heatpump
+  </text>
+
+  <!-- Subtitle -->
+  <text x="260" y="145" font-family="Arial, sans-serif" font-size="28" fill="var(--subtitle)">
+    ESPHome Custom Component • Modbus RTU
+  </text>
+</svg>

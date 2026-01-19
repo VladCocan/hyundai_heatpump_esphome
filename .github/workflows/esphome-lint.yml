@@ -1,0 +1,26 @@
+name: ESPHome Lint
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  esphome-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ESPHome
+        run: pip install git+https://github.com/esphome/esphome.git@dev
+
+      - name: Validate YAML syntax only
+        run: esphome config example_esphome.yaml --only-check-yaml
