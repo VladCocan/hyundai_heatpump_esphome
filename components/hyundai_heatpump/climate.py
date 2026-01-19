@@ -1,34 +1,19 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.components import climate
+from esphome.components import climate, modbus_controller
+from .const import *
 
-from . import HyundaiHPInternalHub
+DEPENDENCIES = ["modbus_controller"]
 
-DEPENDENCIES = ["hyundai_heatpump"]
+CONF_MODBUS_ID = "modbus_controller_id"
 
-CONF_ADDRESS = "address"
-CONF_HUB = "modbus_bus"
-
-hyundai_hp_ns = cg.esphome_ns.namespace("hyundai_heatpump")
-
-# Climate class
-HyundaiHPInternalClimate = hyundai_hp_ns.class_(
-    "HyundaiHPInternalClimate", climate.Climate, cg.Component
-)
-
-# 2025+ uses _CLIMATE_SCHEMA
-CONFIG_SCHEMA = climate._CLIMATE_SCHEMA.extend(
-    {
-        cv.GenerateID(): cv.declare_id(HyundaiHPInternalClimate),
-        cv.Required(CONF_HUB): cv.use_id(HyundaiHPInternalHub),
-        cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
-    }
-)
-
+CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
+    cv.Required(CONF_MODBUS_ID): cv.use_id(modbus_controller.ModbusController),
+})
 
 async def to_code(config):
-    hub = await cg.get_variable(config[CONF_HUB])
-    var = cg.new_Pvariable(config[cv.GenerateID()])
-    cg.add(var.set_hub(hub))
-    cg.add(var.set_address(config[CONF_ADDRESS]))
+    parent = await cg.get_variable(config[CONF_MODBUS_ID])
+    var = cg.new_Pvariable(config[CONF_ID])
+    await cg.register_component(var, config)
     await climate.register_climate(var, config)
+    cg.add(var.set_modbus_parent(parent))
